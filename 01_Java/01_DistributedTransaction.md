@@ -628,7 +628,7 @@ cancel:
 
 方案1：
 
-![最大努力通知_方案1]()
+![最大努力通知_方案1](https://dyz-picbed.obs.cn-south-1.myhuaweicloud.com/01_Java_dt/18_ackbest.png)
 
 本方案是利用 MQ 的 ack 机制由 MQ 向接收通知方发送通知，流程如下：
 
