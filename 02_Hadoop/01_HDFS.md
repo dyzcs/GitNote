@@ -67,7 +67,7 @@ Hadoop 安装启动后使用 jps 命令可以看到有哪些启动进程。
 
 Hadoop 以流式数据访问模式来存储超大文件，运行于商业硬件集群上。
 
-![HDFS 架构](https://dyz-picbed.obs.cn-south-1.myhuaweicloud.com/02_hadoop/01_hdfsarchitecture.png)
+<img src="https://dyz-picbed.obs.cn-south-1.myhuaweicloud.com/02_hadoop/01_hdfsarchitecture.png" alt="HDFS 架构" style="zoom:80%;" />
 
 1. **超大文件**
 
@@ -117,7 +117,7 @@ HDFS 中的块默认为 128 MB，是为了最小化寻址开销。如果块足�
 
 ### 3.3 HDFS 文件读取
 
-![HDFS 文件读取](https://dyz-picbed.obs.cn-south-1.myhuaweicloud.com/02_hadoop/02_hdfsreadfile.png)
+<img src="https://dyz-picbed.obs.cn-south-1.myhuaweicloud.com/02_hadoop/02_hdfsreadfile.png" alt="HDFS 文件读取" style="zoom:50%;" />
 
 1. 客户端向 NameNode 发出写文件请求。
 2. 检查是否已存在文件、检查权限。若通过检查，**直接先将操作写入EditLog**，并返回输出流对象。
@@ -133,7 +133,7 @@ HDFS 中的块默认为 128 MB，是为了最小化寻址开销。如果块足�
 
 ### 3.4 HDFS 文件写入
 
-![HDFS 文件写入](https://dyz-picbed.obs.cn-south-1.myhuaweicloud.com/02_hadoop/03_hdfswritefile.png)
+<img src="https://dyz-picbed.obs.cn-south-1.myhuaweicloud.com/02_hadoop/03_hdfswritefile.png" alt="HDFS 文件写入" style="zoom:50%;" />
 
 1. client 访问 NameNode ，查询元数据信息，获得这个文件的数据块位置列表，返回输入流对象。
 2. 就近挑选一台 datanode 服务器，请求建立输入流 。
