@@ -94,7 +94,6 @@ Cluster 模式将用于监控和调度的 Driver 模块启动在 Yarn 集群资�
 > 输入: 1->2->3->4->5->NULL
 > 输出: 5->4->3->2->1->NULL
 > ```
-
 ```java
 /**
  * Definition for singly-linked list.
@@ -140,7 +139,6 @@ class Solution {
 > 输入: 1->2->3->4->5->NULL, m = 2, n = 4
 > 输出: 1->4->3->2->5->NULL
 > ```
-
 ```java
 /**
  * Definition for singly-linked list.
@@ -192,7 +190,6 @@ class Solution {
 > minStack.top();      --> 返回 0.
 > minStack.min();   --> 返回 -2.
 > ```
-
 ```
 class MinStack {
 	Stack<Integer> A, B;
@@ -216,7 +213,6 @@ class MinStack {
         return B.peek();
     }
 }
-
 /**
  * Your MinStack object will be instantiated and called as such:
  * MinStack obj = new MinStack();
@@ -273,4 +269,4 @@ class MinStack {
 
 题目：**有 100 层楼梯，从其中一层摔下鸡蛋的时候鸡蛋会碎，并且次层之上的都会碎，次层之下的都不会碎，如果你有一个鸡蛋、两个鸡蛋、三个鸡蛋，你会怎么去找出这个楼层，最多要试多少次？**
 
-笔者看法：如果只有一个鸡蛋，那只能从第一层开始逐渐尝试；有两个鸡蛋其中一个可以选择从 30 层或者 50 层开始，如果碎了那就将第二个鸡蛋从 0 开始，如果没碎那就减少了一半或者三分之一。如果 n 个鸡蛋可以进行 n - 1 次尝试，减少逐层尝试的次数。
+笔者看法：如果只有一个鸡蛋，那只能从第一层开始逐渐尝试；有两个鸡蛋其中一个可以选择从 30 层或者 50 层开始，如果碎了那就将第二个鸡蛋从 0 开始，如果没碎那就减少了一半或者三分之一。如果 n 个鸡蛋可以进行 n - 1 次尝试，减少逐层尝试的次数。 
