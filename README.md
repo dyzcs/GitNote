@@ -17,6 +17,10 @@
 
 ### [Hadoop_Yarn](02_Hadoop/02_Yarn.md)
 
+## Hive
+
+### [Hive四种导入数据方式](06_Hive\01_Hive几种数据导入方式.md)
+
 ## JVm
 
 ### [大数据环境下JVM调优案例](05_JVM/01_JVM.md)
