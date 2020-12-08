@@ -31,3 +31,6 @@
 
 ### [Flink快速上手](08_Flink/02.md)
 
+### Flume
+
+[Flume 架构](Flume/flume.md)
