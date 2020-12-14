@@ -20,7 +20,7 @@ Apache Flink 是一个分布式处理引擎和框架，用于对无界数据和�
 
 三、还有就是滑动窗口的长度如果过长，而滑动距离很短的话，Flink 的性能会下降的很厉害。
 
-参照连接：[Flink 滑动窗口优化](https://www.infoq.cn/article/sIhs_qY6HCpMQNblTI9M)
+参考文章：[Flink 滑动窗口优化](https://www.infoq.cn/article/sIhs_qY6HCpMQNblTI9M)
 
 四、状态后端使用 RocksDB，还没有碰到被撑爆的问题。
 
@@ -62,4 +62,12 @@ Flink 内置的很多算子，包括源 source，数据存储 sink 都是由状�
 
 ### 面试题八：Flink 的 CheckPoint 和 Spark 的比较
 
-Spark Streaming 的 checkpoint
+Spark Streaming 的 checkpoint 仅仅是针对 driver 的故障恢复做了数据和元数据的 checkpoint。而 Flink 的 checkpoint 机制要复杂了很多，它采用的是轻量级的分布式快照，实现了每个算子的快照，及流动中的数据的快照。
+
+参考文章：[Flink 超越 Spark 的 Checkpoint 机制](https://cloud.tencent.com/developer/article/1189624)
+
+### 面试题九：Flink 的三种语义是什么？分别说出应用场景。
+
+1. Event Time：这是实际应用最常见的时间语义。
+2. Processing Time：没有事件时间的情况下，或者对实时性要求超高的情况下。
+3. Ingestion Time：存在多个
