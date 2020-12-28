@@ -130,7 +130,7 @@ esac
 
 ## 3. Zookeeper
 
-Zookeeper 同样安装在不同的机器上，而且启动和停止均要到指定机器上进行
+Zookeeper 同样安装在不同的机器上，而且启动和停止均要到指定机器上进行操作，为了简化操作，将 Zookeeper 操作写入 zk.sh 脚本。
 
 ```shell
 zk.sh start / stop / status
@@ -139,21 +139,21 @@ zk.sh start / stop / status
 
 case $1 in
 "start"){
-	for i in s183 s184
+	for i in s183 s184 s185
 	do
         echo ---------- zookeeper $i start ------------
 		ssh $i "/soft/zookeeper/bin/zkServer.sh start"
 	done
 };;
 "stop"){
-	for i in s183 s184
+	for i in s183 s184 s185
 	do
         echo ---------- zookeeper $i stop ------------    
 		ssh $i "/soft/zookeeper/bin/zkServer.sh stop"
 	done
 };;
 "status"){
-	for i in s183 s184
+	for i in s183 s184 s185
 	do
         echo ---------- zookeeper $i status ------------    
 		ssh $i "/soft/zookeeper/bin/zkServer.sh status"
@@ -162,3 +162,31 @@ case $1 in
 esac
 ```
 
+## 4. Kafka
+
+Kafka 启动和停止均要到指定机器上进行，且需要指定相关配置文件，完成 kf.sh 脚本，配置文件路径可以自行指定，方便完成 kafka 操作。
+
+```shell
+kf.sh start / stop
+
+#! /bin/bash
+
+case $1 in
+"start"){
+    for i in s183 s184 s185
+    do
+        echo " --------start $i Kafka-------"
+        ssh $i "/soft/kafka/bin/kafka-server-start.sh -daemon /soft/kafka/config/server.properties"
+    done
+};;
+"stop"){
+    for i in s183 s184 s185
+    do
+        echo " --------stop $i Kafka-------"
+        ssh $i "/soft/kafka/bin/kafka-server-stop.sh stop"
+    done
+};;
+esac
+```
+
+## 
