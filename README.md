@@ -11,6 +11,10 @@
 
 [分布式事务](01_Java/01_DistributedTransaction.md)
 
+## Linux
+
+[shell 编程](Linux/shell脚本.md)
+
 ## Hadoop
 
 [Hadoop_HDFS](02_Hadoop/01_HDFS.md)
