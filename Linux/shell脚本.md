@@ -189,4 +189,29 @@ case $1 in
 esac
 ```
 
-## 
+## 5. Flume
+
+```shell
+#! /bin/bash
+
+case $1 in
+"start"){
+        for i in s183 s184 s185
+        do
+                echo " --------start $i flume-------"
+                ssh $i "nohup /soft/flume/bin/flume-ng agent --conf-file /soft/flume/conf/file-flume-kafka.conf --name a1 -Dflume.root.logger=INFO,LOGFILE >/soft/flume/log1.txt 2>&1  &"
+        done
+};;	
+"stop"){
+        for i in s183 s184 s185
+        do
+                echo " --------stop $i flume-------"
+                ssh $i "ps -ef | grep file-flume-kafka | grep -v grep |awk  '{print \$2}' | xargs -n1 kill -9 "
+        done
+
+};;
+esac
+```
+
+
+
