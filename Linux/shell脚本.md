@@ -217,7 +217,9 @@ esac
 
 ## 6. SuperSet
 
-superset 为 Python 语言的一款可视化框架，需要机器上安装有 Python 3 环境，为了方便管理，在 centos 上可以完成
+superset 为 Python 语言的一款可视化框架，需要机器上安装有 Python 3 环境，为了方便管理，在 centos 上可以安装 miniconda 3，方便管理 Python 版本和模块安装卸载。
+
+此脚本完全针对 superset，如有需要可自行定制开发
 
 ```shell
 superset.sh start / stop / status
@@ -226,14 +228,14 @@ superset.sh start / stop / status
 
 case $1 in
 "start"){
-        for i in s183 s184
+        for i in s183 s184 s185
         do
                 echo " --------start $i flume-------"
                 ssh $i "nohup /soft/flume/bin/flume-ng agent --conf-file /soft/flume/conf/file-flume-kafka.conf --name a1 -Dflume.root.logger=INFO,LOGFILE >/soft/flume/log1.txt 2>&1  &"
         done
 };;	
 "stop"){
-        for i in s183 s184
+        for i in s183 s184 s185
         do
                 echo " --------stop $i flume-------"
                 ssh $i "ps -ef | grep file-flume-kafka | grep -v grep |awk  '{print \$2}' | xargs -n1 kill -9 "
