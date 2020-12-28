@@ -219,7 +219,7 @@ esac
 
 superset 为 Python 语言的一款可视化框架，需要机器上安装有 Python 3 环境，为了方便管理，在 centos 上可以安装 miniconda 3，方便管理 Python 版本和模块安装卸载。
 
-此脚本完全针对 superset，如有需要可自行定制开发
+此脚本完全针对 superset，如有需要可自行定制开发。
 
 ```shell
 superset.sh start / stop / status
