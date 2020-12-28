@@ -192,6 +192,8 @@ esac
 ## 5. Flume
 
 ```shell
+f1.sh start / stop
+
 #! /bin/bash
 
 case $1 in
@@ -213,5 +215,100 @@ case $1 in
 esac
 ```
 
+## 6. SuperSet
 
+superset 为 Python 语言的一款可视化框架，需要机器上安装有 Python 3 环境，为了方便管理，在 centos 上可以完成
+
+```shell
+superset.sh start / stop / status
+
+#! /bin/bash
+
+case $1 in
+"start"){
+        for i in s183 s184
+        do
+                echo " --------start $i flume-------"
+                ssh $i "nohup /soft/flume/bin/flume-ng agent --conf-file /soft/flume/conf/file-flume-kafka.conf --name a1 -Dflume.root.logger=INFO,LOGFILE >/soft/flume/log1.txt 2>&1  &"
+        done
+};;	
+"stop"){
+        for i in s183 s184
+        do
+                echo " --------stop $i flume-------"
+                ssh $i "ps -ef | grep file-flume-kafka | grep -v grep |awk  '{print \$2}' | xargs -n1 kill -9 "
+        done
+
+};;
+esac
+
+[centos@s183 /home/centos/bin]$cat superset.sh 
+#!/bin/bash
+
+superset_status(){
+    result=`ps -ef | awk '/gunicorn/ && !/awk/{print $2}' | wc -l`
+    if [[ $result -eq 0 ]]; then
+        return 0
+    else
+        return 1
+    fi
+}
+superset_start(){
+        # 该段内容取自~/.bashrc，所用是进行conda初始化
+        # >>> conda initialize >>>
+        # !! Contents within this block are managed by 'conda init' !!
+        __conda_setup="$('/soft/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+        if [ $? -eq 0 ]; then
+            eval "$__conda_setup"
+        else
+            if [ -f "/soft/miniconda3/etc/profile.d/conda.sh" ]; then
+                . "/soft/miniconda3/etc/profile.d/conda.sh"
+            else
+                export PATH="/soft/miniconda3/bin:$PATH"
+            fi
+        fi
+        unset __conda_setup
+        # <<< conda initialize <<<
+        superset_status >/dev/null 2>&1
+        if [[ $? -eq 0 ]]; then
+            conda activate superset ; gunicorn --workers 5 --timeout 120 --bind s183:8787 --daemon 'superset.app:create_app()'
+        else
+            echo "superset running"
+        fi
+
+}
+
+superset_stop(){
+    superset_status >/dev/null 2>&1
+    if [[ $? -eq 0 ]]; then
+        echo "superset not run"
+    else
+        ps -ef | awk '/gunicorn/ && !/awk/{print $2}' | xargs kill -9
+    fi
+}
+
+
+case $1 in
+    start )
+        echo "Superset start"
+        superset_start
+    ;;
+    stop )
+        echo "Superset stop"
+        superset_stop
+    ;;
+    restart )
+        echo "Superset restart"
+        superset_stop
+        superset_start
+    ;;
+    status )
+        superset_status >/dev/null 2>&1
+        if [[ $? -eq 0 ]]; then
+            echo "superset not run"
+        else
+            echo "superset running"
+        fi
+esac
+```
 
